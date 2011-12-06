@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require 'jekyll'
+
+if ARGV.size != 2
+  puts "Invalid options."
+  exit(1)
+end
+
+options = {
+  'source'      => ARGV[0],
+  'destination' => ARGV[1],
+  'safe'        => false
+}
+
+# Create the Site
+site = Jekyll::Site.new( Jekyll.configuration( options ) )
+
+puts "Building your site.."
+begin
+  site.process
+rescue Jekyll::FatalException => e
+  puts
+  puts "ERROR: YOUR SITE COULD NOT BE BUILT:"
+  puts "------------------------------------"
+  puts e.message
+  exit(1)
+end
+puts "Successfully generated site!"
