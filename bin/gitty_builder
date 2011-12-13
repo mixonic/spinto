@@ -10,7 +10,8 @@ end
 options = {
   'source'      => ARGV[0],
   'destination' => ARGV[1],
-  'safe'        => false
+  'safe'        => false,
+  'plugins'     => File.join(File.dirname(__FILE__), '..', '_plugins')
 }
 
 # Create the Site
