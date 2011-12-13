@@ -2,13 +2,14 @@ module Jekyll
   
   class IncludeWatcher < Jekyll::IncludeTag
 
-    @@inclusions = Hash.new { [] }
+    @@inclusions = {}
     def self.inclusions; @@inclusions; end
 
     def render(context)
-    $stdout.puts "yeah pagh #{context.registers[:page]['location_on_server']}"
       Jekyll::IncludeWatcher.inclusions[context.registers[:page]['url']] = \
-        Jekyll::IncludeWatcher.inclusions[context.registers[:page]['url']] + [@file]
+        (Jekyll::IncludeWatcher.inclusions[context.registers[:page]['url']] || {}).merge(
+          @file => true
+        )
       super
     end
 

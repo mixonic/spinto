@@ -35,9 +35,7 @@ Jekyll::Site.class_eval do
     # Set a blank array for files that did not have
     # inclusions fired.
     (pages + posts + static_files).each do |file|
-      if Jekyll::IncludeWatcher.inclusions[file.location_on_server].empty?
-        Jekyll::IncludeWatcher.inclusions[file.location_on_server] = []
-      end
+      Jekyll::IncludeWatcher.inclusions[file.location_on_server] ||= {}
     end
 
     # Clean up index.html to be '/'
