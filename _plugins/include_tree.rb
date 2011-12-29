@@ -50,7 +50,11 @@ Jekyll::Site.class_eval do
       Jekyll::IncludeWatcher.inclusions[file.location_on_server] ||= {}
       Jekyll::IncludeWatcher.inclusions[file.location_on_server].merge!(source: file.path_to_source)
       if file.respond_to?(:data) && file.data
-        Jekyll::IncludeWatcher.inclusions[file.location_on_server].merge!(file.data['gitty'] || {})
+        data = {}
+        ['editable', '_content', 'description'].each do |key|
+          data[key] = file.data[key] if file.data[key]
+        end
+        Jekyll::IncludeWatcher.inclusions[file.location_on_server].merge!(data)
       end
     end
 
