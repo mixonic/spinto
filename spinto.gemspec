@@ -3,23 +3,23 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.rubygems_version = '1.3.5'
 
-  s.name              = 'gitty_builder'
-  s.version           = '0.1.0'
-  s.date              = '2011-12-06'
+  s.name              = 'spinto'
+  s.version           = '0.2.0'
+  s.date              = '2012-01-04'
 
-  s.summary     = "The site generator used at gitty."
-  s.description = "Gitty Builder uses Jekyll and plugins to build static sites."
+  s.summary     = "The site generator used at spintoapp.com"
+  s.description = "Spinto uses Jekyll and plugins to build static sites, this gem provides the spinto-site builder."
 
   s.authors  = ["Matthew Beale"]
   s.email    = 'matt.beale@madhatted.com'
-  s.homepage = 'http://github.com/mixonic/gitty_builder'
+  s.homepage = 'http://github.com/mixonic/spinto'
 
   s.require_paths = %w[lib]
 
-  s.executables = ["gitty_builder"]
+  s.executables = ["spinto-site"]
 
   s.rdoc_options = ["--charset=UTF-8"]
-  s.extra_rdoc_files = %w[README.textile LICENSE]
+  s.extra_rdoc_files = %w[]
 
   s.add_runtime_dependency('jekyll', "0.11.0")
   s.add_runtime_dependency('coffee-script', "2.2.0")
