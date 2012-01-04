@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'spinto'
-  s.version           = '0.2.1'
+  s.version           = '0.2.2'
   s.date              = '2012-01-04'
 
   s.summary     = "The site generator used at spintoapp.com"
@@ -29,7 +29,14 @@ Gem::Specification.new do |s|
   
   # = MANIFEST =
   s.files = %w[
-
+    Gemfile
+    Rakefile
+    _plugins/coffeescript_converter.rb
+    _plugins/include_tree.rb
+    _plugins/include_watcher.rb
+    bin/spinto-site
+    lib/spinto.rb
+    spinto.gemspec
   ]
   # = MANIFEST =
 
