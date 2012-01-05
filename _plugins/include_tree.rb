@@ -5,7 +5,7 @@ Jekyll::Post.class_eval do
   end
 
   def path_to_source
-    File.join(@name)
+    "_posts/#{File.join(@name)}"
   end
 
 end
