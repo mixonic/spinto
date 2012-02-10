@@ -35,6 +35,9 @@ Gem::Specification.new do |s|
     Gemfile
     Rakefile
     _plugins/coffeescript_converter.rb
+    _plugins/sass_converter.rb
+    _plugins/scss_converter.rb
+    _plugins/less_converter.rb
     _plugins/include_tree.rb
     _plugins/include_watcher.rb
     bin/spinto-site
