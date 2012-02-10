@@ -23,6 +23,8 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency('jekyll', "0.11.0")
   s.add_runtime_dependency('coffee-script', "2.2.0")
+  s.add_runtime_dependency('sass', "3.1.15")
+  s.add_runtime_dependency('less', "2.0.9")
   s.add_runtime_dependency('RedCloth', "4.2.9")
 
   s.add_development_dependency('rake', "~> 0.9")
