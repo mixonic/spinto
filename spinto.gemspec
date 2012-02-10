@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'spinto'
-  s.version           = '0.2.2'
-  s.date              = '2012-01-04'
+  s.version           = '0.2.3'
+  s.date              = '2012-02-09'
 
   s.summary     = "The site generator used at spintoapp.com"
   s.description = "Spinto uses Jekyll and plugins to build static sites, this gem provides the spinto-site builder."
@@ -35,11 +35,11 @@ Gem::Specification.new do |s|
     Gemfile
     Rakefile
     _plugins/coffeescript_converter.rb
-    _plugins/sass_converter.rb
-    _plugins/scss_converter.rb
-    _plugins/less_converter.rb
     _plugins/include_tree.rb
     _plugins/include_watcher.rb
+    _plugins/less_converter.rb
+    _plugins/sass_converter.rb
+    _plugins/scss_converter.rb
     bin/spinto-site
     lib/spinto.rb
     spinto.gemspec
