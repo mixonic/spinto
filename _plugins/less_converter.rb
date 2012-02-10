@@ -17,7 +17,7 @@ module Jekyll
 
     def convert(content)
       begin
-        Less::Engine.new(content).to_css
+        Less::Parser.new.parse(content).to_css
       rescue StandardError => e
         puts "Less error:" + e.message
       end
