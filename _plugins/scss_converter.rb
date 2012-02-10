@@ -2,7 +2,7 @@
 #
 
 module Jekyll
-  require 'scss'
+  require 'sass'
   class ScssConverter < Converter
     safe true
     priority :normal
