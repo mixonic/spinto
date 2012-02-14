@@ -67,7 +67,7 @@ case ARGV.size
 end
 
 options['safe'] = false
-options['plugins'] = File.join(File.dirname(__FILE__), '..', '_plugins')
+options['plugins'] = Spinto::PLUGINS_PATH
 
 options = Jekyll.configuration(options)
 
