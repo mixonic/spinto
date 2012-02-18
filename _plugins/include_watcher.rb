@@ -2,8 +2,9 @@ module Jekyll
   
   class IncludeWatcher < Jekyll::IncludeTag
 
-    @@inclusions = {}
-    def self.inclusions; @@inclusions; end
+    def self.inclusions
+      Thread.current[:jekyll_inclusions] ||= {}
+    end
 
     def render(context)
       Jekyll::IncludeWatcher.inclusions[context.registers[:page]['url']] ||= {}

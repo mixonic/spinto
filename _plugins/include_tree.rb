@@ -41,6 +41,7 @@ Jekyll::Site.class_eval do
 
   alias :render_without_include_tree :render
   def render
+    Thread.current[:jekyll_inclusions]  = {}
     # First, render like Jekyll normally does
     render_without_include_tree
 
