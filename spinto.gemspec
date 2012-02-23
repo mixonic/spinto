@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[]
 
-  s.add_runtime_dependency('spinto-jekyll', "0.11.2.1")
+  s.add_runtime_dependency('spinto-jekyll', "0.11.2.2")
   s.add_runtime_dependency('coffee-script', "2.2.0")
   s.add_runtime_dependency('sass', "3.1.15")
   s.add_runtime_dependency('less', "2.0.9")

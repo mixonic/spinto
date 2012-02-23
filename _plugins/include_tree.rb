@@ -47,13 +47,16 @@ Jekyll::Site.class_eval do
 
     # Set a blank array for files that did not have
     # inclusions fired.
-    (pages + posts + static_files).each do |file|
+    (pages + posts + unpublished_posts + static_files).each do |file|
       Jekyll::IncludeWatcher.inclusions[file.location_on_server] ||= {}
       Jekyll::IncludeWatcher.inclusions[file.location_on_server].merge!(source: file.path_to_source)
       if file.respond_to?(:data) && file.data
         data = {}
         ['editable', '_content', 'title', 'description'].each do |key|
           data[key] = file.data[key] if file.data[key]
+        end
+        if file.respond_to?(:published)
+          data['published'] = file.published
         end
         Jekyll::IncludeWatcher.inclusions[file.location_on_server].merge!(data)
       end

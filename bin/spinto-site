@@ -18,6 +18,7 @@ Basic Command Line Usage:
 HELP
 
 require 'optparse'
+require 'spinto-jekyll'
 require 'jekyll'
 require 'spinto'
 
