@@ -10,6 +10,18 @@ Jekyll::Post.class_eval do
 
 end
 
+Jekyll::Layout.class_eval do
+
+  def location_on_server
+    nil
+  end
+
+  def path_to_source
+    "/_layouts/#{File.join(@name)}"
+  end
+
+end
+
 Jekyll::Page.class_eval do
 
   # It is important that this is the same
@@ -41,51 +53,95 @@ Jekyll::Site.class_eval do
 
   alias :render_without_include_tree :render
   def render
-    Thread.current[:jekyll_inclusions]  = {}
-    # First, render like Jekyll normally does
+    
+    # Clean up this thread.
+    #
+    Thread.current[:jekyll_inclusions] = {}
+
+    # Render like Jekyll normally does
+    #
     render_without_include_tree
 
-    # Set a blank array for files that did not have
-    # inclusions fired.
-    (pages + posts + unpublished_posts + static_files).each do |file|
-      Jekyll::IncludeWatcher.inclusions[file.location_on_server] ||= {}
-      Jekyll::IncludeWatcher.inclusions[file.location_on_server].merge!(source: file.path_to_source)
-      if file.respond_to?(:data) && file.data
-        data = {}
-        ['editable', '_content', 'title', 'description'].each do |key|
-          data[key] = file.data[key] if file.data[key]
-        end
-        if file.respond_to?(:published)
-          data['published'] = file.published
-        end
-        Jekyll::IncludeWatcher.inclusions[file.location_on_server].merge!(data)
-      end
-    end
+    spinto_data = {}
 
-    # Clean up index.html to be '/'
-    Jekyll::IncludeWatcher.inclusions.keys.each do |key|
-      matches = key.match(/^(.*\/)index.html$/)
+    url_cleaner = lambda {|dirty_url|
+      matches = dirty_url.match(/^(.*\/)index.html$/)
+      clean_url = dirty_url
       if matches
-        clean_name = if matches[1] == '/'
+        clean_url = if matches[1] == '/'
           matches[1]
         else
           matches[1].gsub(/\/$/, '')
         end
-        Jekyll::IncludeWatcher.inclusions[clean_name] = \
-          Jekyll::IncludeWatcher.inclusions.delete(key)
       end
+      clean_url
+    }
+
+    # Add pages to the Spinto data
+    #
+    spinto_data['pages'] = pages.collect do |page|
+      spinto_page_data = {
+        'includes'  => (Jekyll::IncludeWatcher.inclusions[page.location_on_server] || []),
+        'source_path' => page.path_to_source,
+        'url'         => url_cleaner.call( page.location_on_server )
+      }
+      
+      if page.data
+        %w{ editable title description }.each do |key|
+          spinto_page_data[key] = page.data[key] if page.data[key]
+        end
+      end
+
+      spinto_page_data
+    end.sort {|a,b| a['url'] <=> b['url'] }
+
+    # Add layouts to the Spinto data
+    #
+    spinto_data['layouts'] = layouts.values.collect do |layout|
+      {
+        'source_path' => layout.path_to_source
+      }
+    end.sort {|a,b| a['source_path'] <=> b['source_path'] }
+
+    # Add posts to Spinto data
+    #
+    %w{ posts unpublished_posts }.each do |post_type|
+      spinto_data[post_type] = send(post_type.to_sym).collect do |post|
+        spinto_post_data = {
+          'source_path' => post.path_to_source,
+          'url'         => url_cleaner.call( post.location_on_server ),
+          'published'   => post.published
+        }
+        
+        if post.data
+          %w{ title description }.each do |key|
+            spinto_post_data[key] = post.data[key] if post.data[key]
+          end
+        end
+        spinto_post_data
+      end.sort {|a,b| a['url'] <=> b['url'] }
     end
+
+    # Add pages to the Spinto data
+    #
+    spinto_data['static_files'] = static_files.collect do |file|
+      {
+        'source_path' => file.path_to_source,
+        'url'         => url_cleaner.call( file.location_on_server )
+      }
+    end.sort {|a,b| a['url'] <=> b['url'] }
 
     # Write our inclusions to a dot-file
-    filename = '.include_tree'
+    #
+    filename = '.spinto_data'
     
     File.open(File.join(source, filename), "w") do |f|
-      f.write JSON.dump( Jekyll::IncludeWatcher.inclusions )
+      f.write JSON.dump( spinto_data )
     end
 
-    # Ensure Jekyll doesn't clean ths up.
+    # Ensure Jekyll doesn't clean this up.
+    #
     static_files << Jekyll::StaticFile.new(self, source, "/", filename)
   end
 
 end
-

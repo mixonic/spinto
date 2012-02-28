@@ -7,12 +7,8 @@ module Jekyll
     end
 
     def render(context)
-      Jekyll::IncludeWatcher.inclusions[context.registers[:page]['url']] ||= {}
-      Jekyll::IncludeWatcher.inclusions[context.registers[:page]['url']][:includes] ||= {}
-      Jekyll::IncludeWatcher.inclusions[context.registers[:page]['url']][:includes] = \
-        (Jekyll::IncludeWatcher.inclusions[context.registers[:page]['url']][:includes] || {}).merge(
-          @file => { 'editable' => true }
-        )
+      Jekyll::IncludeWatcher.inclusions[context.registers[:page]['url']] ||= []
+      Jekyll::IncludeWatcher.inclusions[context.registers[:page]['url']] << @file
       super
     end
 
