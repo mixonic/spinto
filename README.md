@@ -45,7 +45,7 @@ Basic Command Line Usage:
 **Installation**
 
 ``` bash
-gem install barron
+gem install spinto
 ```
 
 And you're done!
