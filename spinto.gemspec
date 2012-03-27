@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'spinto'
-  s.version           = '0.2.8'
-  s.date              = '2012-02-28'
+  s.version           = '0.2.9'
+  s.date              = '2012-03-27'
 
   s.summary     = "The site generator used at spintoapp.com"
   s.description = "Spinto uses Jekyll and plugins to build static sites, this gem provides the spinto-site builder."
@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[]
 
-  s.add_runtime_dependency('spinto-jekyll', "0.11.2.2")
+  s.add_runtime_dependency('spinto-jekyll', "0.11.2.3")
   s.add_runtime_dependency('coffee-script', "2.2.0")
   s.add_runtime_dependency('sass', "3.1.15")
   s.add_runtime_dependency('less', "2.0.9")
@@ -33,6 +33,8 @@ Gem::Specification.new do |s|
   # = MANIFEST =
   s.files = %w[
     Gemfile
+    LICENSE
+    README.md
     Rakefile
     _plugins/coffeescript_converter.rb
     _plugins/include_tree.rb
