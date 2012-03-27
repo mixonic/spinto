@@ -14,7 +14,7 @@ your website on your own computer. Open a terminal and `cd`
 into a Spinto/Jekyll project, and start the server:
 
 ``` bash
-spinto-server --auto --server
+spinto-site --auto --server
 ```
 
 Now you can open a browser to [http://localhost:4000](http://localhost:4000)
@@ -45,7 +45,7 @@ Basic Command Line Usage:
 **Installation**
 
 ``` bash
-gem install barron
+gem install spinto
 ```
 
 And you're done!
