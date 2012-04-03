@@ -69,6 +69,7 @@ end
 
 options['safe'] = false
 options['plugins'] = Spinto::PLUGINS_PATH
+options['pygments'] = true
 
 options = Jekyll.configuration(options)
 
