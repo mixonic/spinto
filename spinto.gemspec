@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'spinto'
-  s.version           = '0.2.9'
-  s.date              = '2012-03-27'
+  s.version           = '0.2.10'
+  s.date              = '2012-04-03'
 
   s.summary     = "The site generator used at spintoapp.com"
   s.description = "Spinto uses Jekyll and plugins to build static sites, this gem provides the spinto-site builder."
