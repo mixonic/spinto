@@ -44,6 +44,10 @@ opts = OptionParser.new do |opts|
     options['url'] = url
   end
 
+  opts.on("--[no-]pygments", "Use pygments to highlight code (true at Spinto)") do |pygments|
+    options['pygments'] = pygments
+  end
+  
   opts.on("--version", "Display current version") do
     puts "Spinto " + Spinto::VERSION
     exit 0
@@ -69,7 +73,6 @@ end
 
 options['safe'] = false
 options['plugins'] = Spinto::PLUGINS_PATH
-options['pygments'] = true
 
 options = Jekyll.configuration(options)
 
