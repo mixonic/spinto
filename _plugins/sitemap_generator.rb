@@ -185,7 +185,7 @@ module Jekyll
       loc = REXML::Element.new "loc"
       url = site.config['sitemap']['url'] if site.config['sitemap']
       url ||= site.config['url']
-      loc.text = "#{url[-1..-1] == '/' ? url[0..-2] : url}#{page_or_post.location_on_server}"
+      loc.text = "#{url ? (url[-1..-1] == '/' ? url[0..-2] : url) : ''}#{page_or_post.location_on_server}"
 
       loc
     end
