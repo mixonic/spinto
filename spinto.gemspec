@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'spinto'
-  s.version           = '0.2.11'
+  s.version           = '0.2.12'
   s.date              = '2012-04-24'
 
   s.summary     = "The site generator used at spintoapp.com"
