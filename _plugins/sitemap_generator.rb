@@ -202,7 +202,7 @@ module Jekyll
 
       case page_or_post
       when Jekyll::Page
-        final_date = greater_date(latest_date, @last_modified_post_date)
+        final_date = @last_modified_post_date ? greater_date(latest_date, @last_modified_post_date) : latest_date
         lastmod.text = final_date.iso8601
       else
         lastmod.text = latest_date.iso8601
