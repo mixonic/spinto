@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
 
   s.name              = 'spinto'
   s.version           = '0.2.14'
-  s.date              = '2012-05-01'
+  s.date              = '2012-05-29'
 
   s.summary     = "The site generator used at spintoapp.com"
   s.description = "Spinto uses Jekyll and plugins to build static sites, this gem provides the spinto-site builder."
@@ -23,7 +23,9 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency('spinto-jekyll', "0.11.2.5")
   s.add_runtime_dependency('coffee-script', "2.2.0")
-  s.add_runtime_dependency('sass', "3.1.15")
+  s.add_runtime_dependency('sass', "3.1.19")
+  # s.add_runtime_dependency('bourbon', "2.1.0")
+  s.add_runtime_dependency('compass', '0.12.1')
   s.add_runtime_dependency('less', "2.1.0")
   s.add_runtime_dependency('RedCloth', "4.2.9")
 

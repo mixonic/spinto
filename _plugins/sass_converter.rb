@@ -3,6 +3,7 @@
 
 module Jekyll
   require 'sass'
+  require 'compass'
   class SassConverter < Converter
     safe true
     priority :normal
